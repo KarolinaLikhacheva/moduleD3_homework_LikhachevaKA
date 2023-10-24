@@ -1,0 +1,18 @@
+{% extends 'default.html' %}
+
+{% block title %}Список новостей{% endblock %}
+
+{% block content %}
+<h1>Список новостей</h1>
+
+<ul>
+    {% for news in news_list %}
+    <li>
+        <h2>{{ news.title }}</h2>
+        <p>Дата публикации: {{ news.get_formatted_date }}</p>
+        <p>{{ news.get_short_text|truncatechars:50 }}</p>
+        <a href="{% url 'news:news_detail' news.pk %}">Подробнее</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
